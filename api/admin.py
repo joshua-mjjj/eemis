@@ -13,8 +13,17 @@ from api.models import (
 admin.site.site_header = "EEMIS"
 admin.site.index_title = "EEMIS Dashboard"
 
+class UserAdmin(admin.ModelAdmin):
+    list_display = ["home_address", "username", "contact", "occupation"]
 
-admin.site.register(User)
-admin.site.register(RecruitmentAgency)
-admin.site.register(Worker)
+class AgencyAdmin(admin.ModelAdmin):
+    list_display = ["registered_name", "contact", "email"]
+
+class WorkerAdmin(admin.ModelAdmin):
+    list_display = ["full_name", "contact", "origin_address", "country_of_destination", "employment_company"]
+
+
+admin.site.register(User, UserAdmin)
+admin.site.register(RecruitmentAgency, AgencyAdmin)
+admin.site.register(Worker, WorkerAdmin)
 

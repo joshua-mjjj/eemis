@@ -50,7 +50,7 @@ class User(AbstractUser):
     last_name = models.CharField(max_length=32, default="", blank=True, null=True)
     date_of_birth = models.DateField(auto_now_add=True, blank=True, null=True)
     home_address = models.CharField(max_length=32, blank=True, null=True)
-    contact = models.CharField(max_length=50, blank=True, null=True) 
+    contact = models.CharField(max_length=50, default="contact") 
     occupation = models.CharField(max_length=50, blank=True, null=True) 
 
     is_staff = models.BooleanField("staff status", default=False)
@@ -108,9 +108,10 @@ class RecruitmentAgency(models.Model):
         verbose_name_plural = "Recuitment Agencies"
 
     def __str__(self):
-        return '{}, {}'.format(self.registered_name)
+        return '{}'.format(self.registered_name)
 
 class Worker(models.Model):
+    user = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name="owner")
     full_name = models.CharField(max_length=52)
     contact = models.CharField(max_length=52, unique=True)
     email = models.CharField(max_length=52, blank=True, null=True)
@@ -140,7 +141,7 @@ class Worker(models.Model):
         verbose_name_plural = "Workers"
 
     def __str__(self):
-        return '{}, {}'.format(self.full_name)
+        return '{}'.format(self.full_name)
 
 
 

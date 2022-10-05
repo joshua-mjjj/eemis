@@ -79,7 +79,10 @@ class UserViewSet(ModelViewSet):
 class WorkerViewset(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticated,)
     serializer_class = WorkerSerializer
-    queryset = Worker.objects.all()
+    # queryset = Worker.objects.all()
+
+    def get_queryset(self):
+        return Worker.objects.filter(user=self.request.user)
 
 class RecruitmentAgencyViewset(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticated,)
