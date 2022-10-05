@@ -48,10 +48,10 @@ class User(AbstractUser):
     
     first_name = models.CharField(max_length=32, default="", blank=True, null=True)
     last_name = models.CharField(max_length=32, default="", blank=True, null=True)
-    age = models.CharField(max_length=32, blank=True, null=True)
-    location = models.CharField(max_length=32, blank=True, null=True)
-    contact = models.CharField(max_length=50, blank=True, null=True) #
-
+    date_of_birth = models.DateField(auto_now_add=True, blank=True, null=True)
+    home_address = models.CharField(max_length=32, blank=True, null=True)
+    contact = models.CharField(max_length=50, blank=True, null=True) 
+    occupation = models.CharField(max_length=50, blank=True, null=True) 
 
     is_staff = models.BooleanField("staff status", default=False)
     is_active = models.BooleanField("active", default=True)
@@ -115,7 +115,8 @@ class Worker(models.Model):
     contact = models.CharField(max_length=52, unique=True)
     email = models.CharField(max_length=52, blank=True, null=True)
     nin = models.CharField(max_length=100, blank=True, null=True)
-    origin_location = models.CharField(max_length=52, blank=True, null=True)
+    date_of_birth = models.DateField(auto_now_add=True, blank=True, null=True)
+    origin_address = models.CharField(max_length=52, blank=True, null=True)
     registration_number = models.CharField(max_length=52, blank=True, null=True)
 
     country_of_destination = models.CharField(max_length=52, choices=COUNTRIES)
@@ -125,11 +126,11 @@ class Worker(models.Model):
     contract_end_date = models.DateField(auto_now_add=True, blank=True, null=True)
 
     employment_company = models.CharField(max_length=100, blank=True, null=True)
-    work_place_location = models.CharField(max_length=100, blank=True, null=True)
+    work_place_address = models.CharField(max_length=100, blank=True, null=True)
     employer_name = models.CharField(max_length=100, blank=True, null=True)
     employer_contact = models.CharField(max_length=100, blank=True, null=True)
     employer_email = models.CharField(max_length=100, blank=True, null=True)
-    employer_work_place = models.CharField(max_length=100, blank=True, null=True)
+    employer_work_place_address = models.CharField(max_length=100, blank=True, null=True)
     employer_company = models.CharField(max_length=100, blank=True, null=True)
 
     created_at = models.DateTimeField(auto_now_add=True)
