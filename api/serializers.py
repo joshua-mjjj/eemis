@@ -17,7 +17,10 @@ class JWTSerializer(JSONWebTokenSerializer):
 class SignUpSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ("email", "username", "account_type", "password","age","location", "contact")
+        fields = ("email", "username", "account_type", 
+                  "first_name", "password", 
+                  "contact", "last_name", "date_of_birth", 
+                  "home_address", "occupation")
 
 class UserSerializer(serializers.ModelSerializer):
 
