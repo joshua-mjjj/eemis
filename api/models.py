@@ -14,6 +14,11 @@ ACCOUNT_TYPES = (
     ("Worker", "Worker")
 )
 
+GENDER = (
+    ("Male", "Male"),
+    ("Female", "Female")
+)
+
 class UserManager(BaseUserManager):
     def _create_user(self, username, password, is_staff, is_superuser, **extra_fields):
         if not username:
@@ -45,6 +50,7 @@ class User(AbstractUser):
         "email address", max_length=255, unique=False, blank=True, null=True
     )
     account_type = models.CharField(max_length=32, choices=ACCOUNT_TYPES)
+    gender = models.CharField(max_length=32, choices=GENDER, null=True, blank=True)
     
     first_name = models.CharField(max_length=32, default="", blank=True, null=True)
     last_name = models.CharField(max_length=32, default="", blank=True, null=True)
@@ -119,6 +125,7 @@ class Worker(models.Model):
     date_of_birth = models.DateField(auto_now_add=True, blank=True, null=True)
     origin_address = models.CharField(max_length=52, blank=True, null=True)
     registration_number = models.CharField(max_length=52, blank=True, null=True)
+    gender = models.CharField(max_length=32, choices=GENDER, null=True, blank=True)
 
     country_of_destination = models.CharField(max_length=52, choices=COUNTRIES)
     agency = models.ForeignKey(RecruitmentAgency, on_delete=models.DO_NOTHING, related_name="agency")
