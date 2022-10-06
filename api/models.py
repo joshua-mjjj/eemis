@@ -104,7 +104,7 @@ class RecruitmentAgency(models.Model):
     contact = models.CharField(max_length=52, unique=True)
     email = models.CharField(max_length=52, blank=True, null=True)
     premises = models.CharField(max_length=52, blank=True, null=True)
-    registration_number = models.CharField(max_length=52, blank=True, null=True)
+    registration_number = models.CharField(max_length=52, blank=True, null=True, help_text="Agency's licence number.")
     no_workers_affiliated = models.CharField(max_length=52, blank=True, null=True)
     countries = models.CharField(max_length=52, blank=True, null=True, help_text="Please add a list of the countries the agency sends people to.")
     created_at = models.DateTimeField(auto_now_add=True)
@@ -130,8 +130,13 @@ class Worker(models.Model):
     country_of_destination = models.CharField(max_length=52, choices=COUNTRIES)
     agency = models.ForeignKey(RecruitmentAgency, on_delete=models.DO_NOTHING, related_name="agency")
     countries_been_to = models.CharField(max_length=52, blank=True, null=True, help_text="Please add a list of the countries the agency sends people to.")
-    contract_start_date = models.DateField(auto_now_add=True, blank=True, null=True)
-    contract_end_date = models.DateField(auto_now_add=True, blank=True, null=True)
+    
+    contract_start_date = models.DateField(blank=True, null=True)
+    contract_end_date = models.DateField(blank=True, null=True)
+
+    returned = models.BooleanField(default=False)
+    abroad = models.BooleanField(default=False, help_text="Is this worked abroad? ")
+
 
     employment_company = models.CharField(max_length=100, blank=True, null=True)
     work_place_address = models.CharField(max_length=100, blank=True, null=True)

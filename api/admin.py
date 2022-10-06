@@ -20,8 +20,7 @@ class AgencyAdmin(admin.ModelAdmin):
     list_display = ["registered_name", "contact", "email"]
 
 class WorkerAdmin(admin.ModelAdmin):
-    list_display = ["full_name", "contact", "origin_address", "country_of_destination", "employment_company"]
-
+    list_display = ["full_name", "contact", "contract_start_date", "contract_end_date", "country_of_destination", "returned", "abroad"]
 
 admin.site.register(User, UserAdmin)
 admin.site.register(RecruitmentAgency, AgencyAdmin)
