@@ -84,6 +84,14 @@ class WorkerViewset(viewsets.ModelViewSet):
     def get_queryset(self):
         return Worker.objects.filter(user=self.request.user)
 
+    # def partial_update(self, request, *args, **kwargs):
+    #     instance = self.queryset.get(pk=kwargs.get('pk'))
+    #     serializer = self.serializer_class(instance, data=request.data, partial=True)
+    #     serializer.is_valid(raise_exception=True)
+        
+    #     serializer.save()
+    #     return Response(serializer.data)
+
 class RecruitmentAgencyViewset(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticated,)
     serializer_class = RecruitmentAgencySerializer
